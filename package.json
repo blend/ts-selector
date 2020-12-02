@@ -1,0 +1,32 @@
+{
+  "name": "ts-selector",
+  "version": "1.0.0",
+  "description": "A typescript implementation of Kubernetes Selectors",
+  "main": "dist/src/index.js",
+  "scripts": {
+    "prepare": "tsc",
+    "prettier:base": "prettier '{src,test}/**/**/*.ts'",
+    "prettier": "npm run prettier:base -- --write",
+    "lintSrc": "tslint --project tsconfig.json --config tslint.js 'src/**/*.ts'",
+    "lintTest": "tslint --project tsconfig.json --config tslint.test.js 'test/**/*.ts'",
+    "lint": "npm run prettier:base -- --list-different && npm run lintSrc && npm run lintTest",
+    "lintFix": "npm run prettier && npm run lintSrc -- --fix && npm run lintTest -- --fix",
+    "testCode": "nyc ava",
+    "test": "tsc && npm run testCode && npm run lint && ./bin/assert_no_file_modifications.sh",
+    "testFix": "tsc && npm run testCode && npm run lintFix",
+    "start": "grunt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/blend/ts-selector"
+  },
+  "keywords": [
+    "selector",
+    "kubernetes"
+  ],
+  "author": "Blend Labs, inc.",
+  "license": "MIT",
+  "dependencies": {
+    "ava": "^3.13.0"
+  }
+}
