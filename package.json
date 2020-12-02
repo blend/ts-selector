@@ -26,7 +26,5 @@
   ],
   "author": "Blend Labs, inc.",
   "license": "MIT",
-  "dependencies": {
-    "ava": "^3.13.0"
-  }
+  "dependencies": {}
 }
