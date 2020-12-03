@@ -1,16 +1,8 @@
-test/
-Gruntfile.js
-Makefile
-tsconfig.json
-tslint.*
-bin/
-docs/
-dist/test
-
 node_modules
 venv
 coverage
 logs
+dist
 resources
 *.log
 .nyc_output
@@ -19,4 +11,3 @@ resources
 tscommand-*
 .tscache/
 docs-build/
-.git
