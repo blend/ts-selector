@@ -54,3 +54,7 @@ Note:
       the KEY exists and can be any VALUE.
   (5) A requirement with just !KEY requires that the KEY not exist.
 ```
+
+# License
+
+`ts-events` is licensed under the MIT license.
