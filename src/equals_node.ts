@@ -10,14 +10,14 @@ export default class EqualsNode implements ISelector {
     this.key = key;
     this.value = value;
   }
-  matches(labels: Map<string, string>): boolean {
-    if (labels.has(this.key)) {
-      return labels.get(this.key) === this.value;
+  matches(labels: Record<string, string>): boolean {
+    if (labels[this.key] !== undefined) {
+      return labels[this.key] === this.value;
     }
     return false;
   }
   validate(): Error | null {
-    let err = checkKey(this.key);
+    var err = checkKey(this.key);
     if (err) {
       return err;
     }

@@ -10,8 +10,8 @@ class InNode {
     }
     matches(labels) {
         // if the labels has a given key
-        if (labels.has(this.key)) {
-            const value = labels.get(this.key);
+        if (labels[this.key] !== undefined) {
+            const value = labels[this.key];
             // for each selector value
             for (const iv of this.values) {
                 // if they match, return true

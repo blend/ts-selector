@@ -10,7 +10,7 @@ class HasKeyNode {
         if (!labels) {
             return false;
         }
-        return labels.has(this.key);
+        return labels[this.key] !== undefined;
     }
     validate() {
         return check_key_1.checkKey(this.key);

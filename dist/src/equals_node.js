@@ -9,13 +9,13 @@ class EqualsNode {
         this.value = value;
     }
     matches(labels) {
-        if (labels.has(this.key)) {
-            return labels.get(this.key) === this.value;
+        if (labels[this.key] !== undefined) {
+            return labels[this.key] === this.value;
         }
         return false;
     }
     validate() {
-        let err = check_key_1.checkKey(this.key);
+        var err = check_key_1.checkKey(this.key);
         if (err) {
             return err;
         }

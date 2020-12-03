@@ -1,6 +1,6 @@
 // ISelector is a type that implements selector.
 declare interface ISelector {
-  matches(labels: Map<string, string>): boolean;
+  matches(labels: Record<string, string>): boolean;
   validate(): Error | null;
   string(): string;
 }

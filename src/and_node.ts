@@ -6,7 +6,7 @@ export default class AndNode implements ISelector {
   children: ISelector[];
 
   // matches returns if both A and B match the labels.
-  matches(labels: Map<string, string>): boolean {
+  matches(labels: Record<string, string>): boolean {
     for (const s of this.children) {
       if (!s.matches(labels)) {
         return false;

@@ -7,11 +7,11 @@ export default class HasKeyNode implements ISelector {
   }
   key: string;
 
-  matches(labels: Map<string, string>): boolean {
+  matches(labels: Record<string, string>): boolean {
     if (!labels) {
       return false;
     }
-    return labels.has(this.key);
+    return labels[this.key] !== undefined;
   }
 
   validate(): Error | null {
