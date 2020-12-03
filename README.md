@@ -1,6 +1,6 @@
 # ts-selector
 
-`ts-selector` is an implementation of Kubernetes label selectors.
+`ts-selector` is an implementation of Kubernetes label selectors in typescript.
 
 It enables you to parse selectors and match labels (`Record<string,string>`) against them.
 
