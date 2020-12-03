@@ -17,6 +17,43 @@
     "testFix": "tsc && npm run testCode && npm run lintFix",
     "start": "grunt"
   },
+  "ava": {
+    "files": [
+      "dist/test/**/*.test.js"
+    ],
+    "sources": [
+      "src/*.ts",
+      "src/**/*.ts"
+    ],
+    "concurrency": 5,
+    "verbose": true,
+    "timeout": "10000",
+    "failFast": false,
+    "powerAssert": true
+  },
+  "nyc": {
+    "reporter": [
+      "html",
+      "json",
+      "lcov",
+      "text"
+    ],
+    "require": [
+      "source-map-support/register"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "skip-full": true,
+    "check-coverage": true,
+    "lines": 80,
+    "functions": 90,
+    "branches": 80,
+    "statements": 80,
+    "exclude": [
+      "dist/test/**/*.js"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "github.com/blend/ts-selector"
