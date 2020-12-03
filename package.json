@@ -2,6 +2,7 @@
   "name": "ts-selector",
   "version": "1.0.0",
   "description": "A typescript implementation of Kubernetes Selectors",
+  "homepage": "https://blend.github.io/ts-selector",
   "main": "dist/src/index.js",
   "scripts": {
     "prepare": "tsc",
@@ -35,6 +36,7 @@
     "eslint": "^7.14.0",
     "nyc": "^15.1.0",
     "prettier": "^2.2.1",
+    "typedoc": "^0.19.2",
     "typescript": "^4.1.2"
   }
 }

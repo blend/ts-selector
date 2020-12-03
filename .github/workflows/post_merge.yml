@@ -1,0 +1,19 @@
+name: "Post Merge"
+
+on:
+  pull_request:
+    branches:
+      - master
+    types: [closed]
+
+jobs:
+
+  push:
+    name: "Post Merge"
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+
+    steps:
+    - run: npm i
+    - run: rm -rf ./docs
+    - run: ./node_modules/.bin/typedoc --excludeNotExported --excludePrivate --readme none --mode file --out ./docs ./src

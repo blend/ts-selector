@@ -18,5 +18,5 @@ resources
 *.pyc
 tscommand-*
 .tscache/
-docs-build/
+docs/
 .git
