@@ -10,6 +10,14 @@ test("assert parser empty input", async (t) => {
 });
 
 test("assert parser equal is correct", async (t) => {
+  const sel = new selector.Parser("foo = bar").mustParse();
+  t.deepEqual("foo == bar", sel.string());
+
+  t.true(sel.matches({ foo: "bar" }));
+  t.false(sel.matches({ foo: "not-bar" }));
+});
+
+test("assert parser double equal is correct", async (t) => {
   const sel = new selector.Parser("foo == bar").mustParse();
   t.deepEqual("foo == bar", sel.string());
 

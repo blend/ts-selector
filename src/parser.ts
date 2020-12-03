@@ -8,6 +8,7 @@ import InNode from "./in_node";
 import NotInNode from "./not_in_node";
 import * as constants from "./constants";
 import * as errors from "./errors";
+import * as charUtil from "./char_util";
 
 // Parser is a parser for selectors.
 export default class Parser {
@@ -77,7 +78,10 @@ export default class Parser {
       let subSelector: ISelector | Error | null = null;
 
       switch (op as string) {
-        case (constants.OpEquals, constants.OpDoubleEquals):
+        case constants.OpEquals:
+          subSelector = this.equals(key);
+          break;
+        case constants.OpDoubleEquals:
           subSelector = this.equals(key);
           break;
         case constants.OpNotEquals:
@@ -191,7 +195,7 @@ export default class Parser {
   // errors if it doesn't read one of the above, or there is another structural issue.
   readOp(): string | Error {
     // skip preceding whitespace
-    this.skipWhiteSpace();
+    this.skipWhitespace();
 
     let state = 0;
     let ch = "";
@@ -218,6 +222,7 @@ export default class Parser {
             state = 7;
             break;
           }
+
           return errors.ErrInvalidOperator;
 
         case 1: // =
@@ -246,9 +251,9 @@ export default class Parser {
 
           return errors.ErrInvalidOperator;
 
-        case 6: // look for "in"
+        case 6: // look for "in" based on "i"
           if (ch === "n") {
-            // starts "notin"
+            // finishes "in"
             op.push(ch);
             this.advance();
             return op.join("");
@@ -299,7 +304,7 @@ export default class Parser {
   // it will leave the cursor on the next char after the word, i.e. the space or token.
   readWord(): string {
     // skip preceding whitespace
-    this.skipWhiteSpace();
+    this.skipWhitespace();
     const word: string[] = [];
     let ch = "";
     for (;;) {
@@ -325,7 +330,7 @@ export default class Parser {
     const results: string[] = [];
 
     // skip preceding whitespace
-    this.skipWhiteSpace();
+    this.skipWhitespace();
 
     let word: string[] = [];
     let ch = "";
@@ -431,7 +436,7 @@ export default class Parser {
     }
   }
 
-  skipWhiteSpace(): void {
+  skipWhitespace(): void {
     if (this.done()) {
       return;
     }
@@ -470,13 +475,7 @@ export default class Parser {
   }
 
   isWhitespace(ch: string): boolean {
-    return (
-      ch.length === 1 &&
-      (ch === constants.Space ||
-        ch === constants.Tab ||
-        ch === constants.CarriageReturn ||
-        ch === constants.NewLine)
-    );
+    return charUtil.isWhitespace(ch);
   }
   isSpecialSymbol(ch: string): boolean {
     return (
@@ -491,9 +490,7 @@ export default class Parser {
     return ch.length === 1 && ch === "\0";
   }
   isAlpha(ch: string): boolean {
-    return (
-      ch.length === 1 && ((ch >= "a" && ch <= "z") || (ch >= "A" && ch <= "Z"))
-    );
+    return charUtil.isAlpha(ch);
   }
   isValidValue(ch: string): boolean {
     return this.isAlpha(ch) || this.isNameSymbol(ch);

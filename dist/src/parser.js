@@ -10,6 +10,7 @@ const in_node_1 = require("./in_node");
 const not_in_node_1 = require("./not_in_node");
 const constants = require("./constants");
 const errors = require("./errors");
+const charUtil = require("./char_util");
 // Parser is a parser for selectors.
 class Parser {
     constructor(input, opts) {
@@ -65,7 +66,10 @@ class Parser {
             }
             let subSelector = null;
             switch (op) {
-                case (constants.OpEquals, constants.OpDoubleEquals):
+                case constants.OpEquals:
+                    subSelector = this.equals(key);
+                    break;
+                case constants.OpDoubleEquals:
                     subSelector = this.equals(key);
                     break;
                 case constants.OpNotEquals:
@@ -173,7 +177,7 @@ class Parser {
     // errors if it doesn't read one of the above, or there is another structural issue.
     readOp() {
         // skip preceding whitespace
-        this.skipWhiteSpace();
+        this.skipWhitespace();
         let state = 0;
         let ch = "";
         const op = [];
@@ -217,9 +221,9 @@ class Parser {
                         return op.join("");
                     }
                     return errors.ErrInvalidOperator;
-                case 6: // look for "in"
+                case 6: // look for "in" based on "i"
                     if (ch === "n") {
-                        // starts "notin"
+                        // finishes "in"
                         op.push(ch);
                         this.advance();
                         return op.join("");
@@ -262,7 +266,7 @@ class Parser {
     // it will leave the cursor on the next char after the word, i.e. the space or token.
     readWord() {
         // skip preceding whitespace
-        this.skipWhiteSpace();
+        this.skipWhitespace();
         const word = [];
         let ch = "";
         for (;;) {
@@ -283,7 +287,7 @@ class Parser {
     readCSV() {
         const results = [];
         // skip preceding whitespace
-        this.skipWhiteSpace();
+        this.skipWhitespace();
         let word = [];
         let ch = "";
         let state = 0;
@@ -372,7 +376,7 @@ class Parser {
             }
         }
     }
-    skipWhiteSpace() {
+    skipWhitespace() {
         if (this.done()) {
             return;
         }
@@ -408,11 +412,7 @@ class Parser {
         }
     }
     isWhitespace(ch) {
-        return (ch.length === 1 &&
-            (ch === constants.Space ||
-                ch === constants.Tab ||
-                ch === constants.CarriageReturn ||
-                ch === constants.NewLine));
+        return charUtil.isWhitespace(ch);
     }
     isSpecialSymbol(ch) {
         return (ch.length === 1 &&
@@ -425,7 +425,7 @@ class Parser {
         return ch.length === 1 && ch === "\0";
     }
     isAlpha(ch) {
-        return (ch.length === 1 && ((ch >= "a" && ch <= "z") || (ch >= "A" && ch <= "Z")));
+        return charUtil.isAlpha(ch);
     }
     isValidValue(ch) {
         return this.isAlpha(ch) || this.isNameSymbol(ch);

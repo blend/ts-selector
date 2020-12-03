@@ -21,7 +21,7 @@ export default class Parser {
     readOp(): string | Error;
     readWord(): string;
     readCSV(): string[] | Error;
-    skipWhiteSpace(): void;
+    skipWhitespace(): void;
     skipToComma(): string;
     isWhitespace(ch: string): boolean;
     isSpecialSymbol(ch: string): boolean;
