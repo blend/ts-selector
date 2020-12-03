@@ -15,5 +15,11 @@ jobs:
 
     steps:
     - run: npm i
-    - run: rm -rf ./docs
-    - run: ./node_modules/.bin/typedoc --excludeNotExported --excludePrivate --readme none --mode file --out ./docs ./src
+    - run: make docs
+    - run: |
+      export VERSION=$(node scripts/current_version.js)
+      git add ./docs
+      git commit -m "Post-merge changes for PR (#${{github.event.number}})
+      git tag ${VERSION}
+      git push --force-with-lease origin ${VERSION}
+      git push --force-with-lease origin HEAD
