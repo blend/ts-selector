@@ -1,4 +1,4 @@
-.PHONY: help docs update-docs
+.PHONY: help build-docs
 
 CURRENT_VERSION := $(shell node scripts/current_version.js)
 DOCS_DIR := ./docs/$(CURRENT_VERSION)
@@ -11,7 +11,7 @@ help:
 	@echo '   make update-docs	Update latest version of `docs/`'
 	@echo ''
 
-docs:
+build-docs:
 	# Make sure `npm ci` is run.
 	[ -d ./node_modules ] || npm ci
 

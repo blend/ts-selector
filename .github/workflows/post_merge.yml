@@ -15,7 +15,7 @@ jobs:
 
     steps:
     - run: npm i
-    - run: make docs
+    - run: make build-docs
     - run: |
       export VERSION=$(node scripts/current_version.js)
       git add ./docs
