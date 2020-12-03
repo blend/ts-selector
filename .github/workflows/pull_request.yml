@@ -12,6 +12,7 @@ jobs:
     - name: checkout
       uses: actions/checkout@v2
 
+    - run: node scripts/must_increment.js
     - run: npm i
     - run: npm test
     - run: ./node_modules/coveralls/bin/coveralls.js < coverage/lcov.info
