@@ -46,10 +46,10 @@
     ],
     "skip-full": true,
     "check-coverage": true,
-    "lines": 80,
-    "functions": 80,
-    "branches": 70,
-    "statements": 80,
+    "lines": 87,
+    "functions": 82,
+    "branches": 71,
+    "statements": 87,
     "exclude": [
       "dist/test/**/*.js"
     ]
