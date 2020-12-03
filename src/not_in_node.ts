@@ -16,7 +16,7 @@ export default class NotInNode implements ISelector {
     if (labels[this.key] !== undefined) {
       const value = labels[this.key];
       // for each selector value
-      for (const iv of this.values) {
+      for (let iv of this.values) {
         // if they match, return true
         if (iv === value) {
           return false;
@@ -31,7 +31,7 @@ export default class NotInNode implements ISelector {
     if (err) {
       return err;
     }
-    for (const iv of this.values) {
+    for (let iv of this.values) {
       err = checkValue(iv);
       if (err) {
         return err;

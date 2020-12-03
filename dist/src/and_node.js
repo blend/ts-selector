@@ -7,7 +7,7 @@ class AndNode {
     }
     // matches returns if both A and B match the labels.
     matches(labels) {
-        for (const s of this.children) {
+        for (let s of this.children) {
             if (!s.matches(labels)) {
                 return false;
             }
@@ -16,7 +16,7 @@ class AndNode {
     }
     // validate validates all the selectors in the clause.
     validate() {
-        for (const s of this.children) {
+        for (let s of this.children) {
             const err = s.validate();
             if (err) {
                 return err;
@@ -27,7 +27,7 @@ class AndNode {
     // And returns a string representation for the selector.
     string() {
         const childValues = [];
-        for (const s of this.children) {
+        for (let s of this.children) {
             childValues.push(s.string());
         }
         return childValues.join(", ");

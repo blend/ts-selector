@@ -133,7 +133,7 @@ class Parser {
         if (current === null) {
             return next;
         }
-        if (current) {
+        if (current instanceof and_node_1.default) {
             current.children.push(next);
             return current;
         }

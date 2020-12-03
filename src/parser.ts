@@ -150,7 +150,7 @@ export default class Parser {
     if (current === null) {
       return next;
     }
-    if (current as AndNode) {
+    if (current instanceof AndNode) {
       (current as AndNode).children.push(next);
       return current;
     }
