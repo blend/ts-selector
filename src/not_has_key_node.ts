@@ -19,6 +19,6 @@ export default class NotHasKeyNode implements ISelector {
   }
 
   string(): string {
-    return this.key;
+    return `!${this.key}`;
   }
 }

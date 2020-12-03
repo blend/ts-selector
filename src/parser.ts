@@ -196,6 +196,7 @@ export default class Parser {
     let state = 0;
     let ch = "";
     const op: string[] = [];
+
     for (;;) {
       ch = this.current();
 
@@ -227,11 +228,13 @@ export default class Parser {
           ) {
             return op.join("");
           }
+
           if (ch === constants.Equal) {
             op.push(ch);
             this.advance();
             return op.join("");
           }
+
           return errors.ErrInvalidOperator;
 
         case 2: // !
@@ -240,14 +243,17 @@ export default class Parser {
             this.advance();
             return op.join("");
           }
+
           return errors.ErrInvalidOperator;
 
-        case 6: // in
+        case 6: // look for "in"
           if (ch === "n") {
+            // starts "notin"
             op.push(ch);
             this.advance();
             return op.join("");
           }
+
           return errors.ErrInvalidOperator;
 
         case 7: // o

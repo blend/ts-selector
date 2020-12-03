@@ -9,6 +9,14 @@ test("assert parser equal is correct", async (t) => {
   t.false(sel.matches({ foo: "not-bar" }));
 });
 
+test("assert parser not equal is correct", async (t) => {
+  const sel = new selector.Parser("foo != bar").mustParse();
+  t.deepEqual("foo != bar", sel.string());
+
+  t.false(sel.matches({ foo: "bar" }));
+  t.true(sel.matches({ foo: "not-bar" }));
+});
+
 test("assert parser in is correct", async (t) => {
   const sel = new selector.Parser("foo in (bar, buzz)").mustParse();
   t.deepEqual("foo in (bar, buzz)", sel.string());
@@ -21,12 +29,32 @@ test("assert parser in is correct", async (t) => {
 
 test("assert parser not in is correct", async (t) => {
   const sel = new selector.Parser("foo notin (bar, buzz)").mustParse();
-  t.deepEqual("foo in (bar, buzz)", sel.string());
+  t.deepEqual("foo notin (bar, buzz)", sel.string());
 
   t.false(sel.matches({ foo: "bar" }));
   t.false(sel.matches({ foo: "buzz" }));
   t.true(sel.matches({ foo: "not-bar" }));
   t.true(sel.matches({ loo: "bar" }));
+});
+
+test("assert parser has key is correct", async (t) => {
+  const sel = new selector.Parser("foo").mustParse();
+  t.deepEqual("foo", sel.string());
+
+  t.true(sel.matches({ foo: "bar" }));
+  t.true(sel.matches({ foo: "buzz" }));
+  t.false(sel.matches({ loo: "bar" }));
+  t.false(sel.matches({ loo: "buzz" }));
+});
+
+test("assert parser not has key is correct", async (t) => {
+  const sel = new selector.Parser("!foo").mustParse();
+  t.deepEqual("!foo", sel.string());
+
+  t.false(sel.matches({ foo: "bar" }));
+  t.false(sel.matches({ foo: "buzz" }));
+  t.true(sel.matches({ loo: "bar" }));
+  t.true(sel.matches({ loo: "buzz" }));
 });
 
 test("assert parser handles and conditions", async (t) => {

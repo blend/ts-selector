@@ -41,6 +41,6 @@ export default class NotInNode implements ISelector {
   }
 
   string(): string {
-    return `${this.key} in (${this.values.join(", ")})`;
+    return `${this.key} notin (${this.values.join(", ")})`;
   }
 }

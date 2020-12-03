@@ -16,7 +16,7 @@ class NotHasKeyNode {
         return check_key_1.checkKey(this.key);
     }
     string() {
-        return this.key;
+        return `!${this.key}`;
     }
 }
 exports.default = NotHasKeyNode;

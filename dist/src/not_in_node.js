@@ -36,7 +36,7 @@ class NotInNode {
         return null;
     }
     string() {
-        return `${this.key} in (${this.values.join(", ")})`;
+        return `${this.key} notin (${this.values.join(", ")})`;
     }
 }
 exports.default = NotInNode;

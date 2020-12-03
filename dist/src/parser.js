@@ -217,8 +217,9 @@ class Parser {
                         return op.join("");
                     }
                     return errors.ErrInvalidOperator;
-                case 6: // in
+                case 6: // look for "in"
                     if (ch === "n") {
+                        // starts "notin"
                         op.push(ch);
                         this.advance();
                         return op.join("");
