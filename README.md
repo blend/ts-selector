@@ -4,11 +4,28 @@
 
 It enables you to parse selectors and match labels (`Record<string,string>`) against them.
 
+## Usage
+
+```typescript
+import * as selector from "ts-selector"
+
+const mySelector = "x in (foo,,baz),y,z notin ()";
+const sel = selector.New(mySelector).mustParse();
+
+console.log(sel.matches({ x: "foo", y: "bar" }); // prints 'true';
+console.log(sel.matches({ x: "foo", y: "bar" }); // prints 'true';
+
+// you can also verify labels are conformant
+
+console.log(selector.checkLabels({ x: "foo", y: "bar" })) // prints 'null';
+console.log(selector.checkLabels({ "_bad": "foo", y: "bar" })) // prints 'Error: ...';
+```
+
 ## Selector Grammar
 
+```
 Selectors must be in the form:
 
-```
   <selector-syntax>         ::= <requirement> | <requirement> "," <selector-syntax>
   <requirement>             ::= [!] KEY [ <set-based-restriction> | <exact-match-restriction> ]
   <set-based-restriction>   ::= "" | <inclusion-exclusion> <value-set>
