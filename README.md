@@ -4,6 +4,10 @@
 
 It enables you to parse selectors and match labels (`Record<string,string>`) against them.
 
+The compilation process uses finite state machines and is relatively efficient.
+
+Selectors are compiled as predicate trees such that once you compile the selector it is every fast to evaluate label matches.
+
 ## Usage
 
 ```typescript
@@ -12,8 +16,9 @@ import * as selector from "ts-selector"
 const mySelector = "x in (foo,,baz),y,z notin ()";
 const sel = selector.New(mySelector).mustParse();
 
-console.log(sel.matches({ x: "foo", y: "bar" }); // prints 'true';
-console.log(sel.matches({ x: "foo", y: "bar" }); // prints 'true';
+console.log(sel.matches({ x: "foo", y: "bar" });      // prints 'true';
+console.log(sel.matches({ x: "baz", y: "bar" });      // prints 'true';
+console.log(sel.matches({ x: "not-foo", y: "bar" });  // prints 'false';
 
 // you can also verify labels are conformant
 
