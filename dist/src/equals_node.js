@@ -15,7 +15,7 @@ class EqualsNode {
         return false;
     }
     validate() {
-        var err = check_key_1.checkKey(this.key);
+        let err = check_key_1.checkKey(this.key);
         if (err) {
             return err;
         }

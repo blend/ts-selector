@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 // Any is a no-op node that always matches.
 class AnyNode {
-    // eslint-disable-next-line @typescript-eslint/no-unusd-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     matches(labels) {
         return true;
     }

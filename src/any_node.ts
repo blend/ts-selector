@@ -1,6 +1,6 @@
 // Any is a no-op node that always matches.
 export default class AnyNode implements ISelector {
-  // eslint-disable-next-line @typescript-eslint/no-unusd-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   matches(labels: Record<string, string>): boolean {
     return true;
   }

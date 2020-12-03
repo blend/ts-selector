@@ -43,7 +43,7 @@ export default class Parser {
     let selector: ISelector | null = null;
     let op: string | Error = "";
 
-    while (true) {
+    for (;;) {
       b = this.current();
       if (b === constants.Bang) {
         this.advance();
@@ -196,7 +196,7 @@ export default class Parser {
     let state = 0;
     let ch = "";
     const op: string[] = [];
-    while (true) {
+    for (;;) {
       ch = this.current();
 
       switch (state) {
@@ -296,7 +296,7 @@ export default class Parser {
     this.skipWhiteSpace();
     const word: string[] = [];
     let ch = "";
-    while (true) {
+    for (;;) {
       ch = this.current();
 
       if (this.isWhitespace(ch)) {
@@ -325,7 +325,7 @@ export default class Parser {
     let ch = "";
     let state = 0;
 
-    while (true) {
+    for (;;) {
       ch = this.current();
 
       if (this.done()) {
@@ -425,13 +425,13 @@ export default class Parser {
     }
   }
 
-  skipWhiteSpace() {
+  skipWhiteSpace(): void {
     if (this.done()) {
       return;
     }
 
     let ch = "";
-    while (true) {
+    for (;;) {
       ch = this.current();
       if (!this.isWhitespace(ch)) {
         return;
@@ -448,7 +448,7 @@ export default class Parser {
     if (this.done()) {
       return ch;
     }
-    while (true) {
+    for (;;) {
       ch = this.current();
       if (ch == constants.Comma) {
         return ch;

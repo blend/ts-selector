@@ -35,7 +35,7 @@ class Parser {
         let b = "";
         let selector = null;
         let op = "";
-        while (true) {
+        for (;;) {
             b = this.current();
             if (b === constants.Bang) {
                 this.advance();
@@ -177,7 +177,7 @@ class Parser {
         let state = 0;
         let ch = "";
         const op = [];
-        while (true) {
+        for (;;) {
             ch = this.current();
             switch (state) {
                 case 0: // initial state, determine what op we're reading for
@@ -264,7 +264,7 @@ class Parser {
         this.skipWhiteSpace();
         const word = [];
         let ch = "";
-        while (true) {
+        for (;;) {
             ch = this.current();
             if (this.isWhitespace(ch)) {
                 return word.join("");
@@ -286,7 +286,7 @@ class Parser {
         let word = [];
         let ch = "";
         let state = 0;
-        while (true) {
+        for (;;) {
             ch = this.current();
             if (this.done()) {
                 return errors.ErrInvalidSelector;
@@ -376,7 +376,7 @@ class Parser {
             return;
         }
         let ch = "";
-        while (true) {
+        for (;;) {
             ch = this.current();
             if (!this.isWhitespace(ch)) {
                 return;
@@ -392,7 +392,7 @@ class Parser {
         if (this.done()) {
             return ch;
         }
-        while (true) {
+        for (;;) {
             ch = this.current();
             if (ch == constants.Comma) {
                 return ch;

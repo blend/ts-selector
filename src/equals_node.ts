@@ -17,7 +17,7 @@ export default class EqualsNode implements ISelector {
     return false;
   }
   validate(): Error | null {
-    var err = checkKey(this.key);
+    let err = checkKey(this.key);
     if (err) {
       return err;
     }
