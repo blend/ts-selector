@@ -2,7 +2,7 @@
 
 `ts-selector` is an implementation of Kubernetes label selectors.
 
-It enables you to parse selectors and match labels (`Map<string,string>`) against them.
+It enables you to parse selectors and match labels (`Record<string,string>`) against them.
 
 ## Selector Grammar
 
