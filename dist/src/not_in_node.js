@@ -13,7 +13,7 @@ class NotInNode {
         if (labels[this.key] !== undefined) {
             const value = labels[this.key];
             // for each selector value
-            for (let iv of this.values) {
+            for (const iv of this.values) {
                 // if they match, return true
                 if (iv === value) {
                     return false;
@@ -27,7 +27,7 @@ class NotInNode {
         if (err) {
             return err;
         }
-        for (let iv of this.values) {
+        for (const iv of this.values) {
             err = check_value_1.checkValue(iv);
             if (err) {
                 return err;

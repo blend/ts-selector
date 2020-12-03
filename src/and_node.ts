@@ -7,7 +7,7 @@ export default class AndNode implements ISelector {
 
   // matches returns if both A and B match the labels.
   matches(labels: Record<string, string>): boolean {
-    for (let s of this.children) {
+    for (const s of this.children) {
       if (!s.matches(labels)) {
         return false;
       }
@@ -16,7 +16,7 @@ export default class AndNode implements ISelector {
   }
   // validate validates all the selectors in the clause.
   validate(): Error | null {
-    for (let s of this.children) {
+    for (const s of this.children) {
       const err = s.validate();
       if (err) {
         return err;
@@ -28,7 +28,7 @@ export default class AndNode implements ISelector {
   // And returns a string representation for the selector.
   string(): string {
     const childValues: string[] = [];
-    for (let s of this.children) {
+    for (const s of this.children) {
       childValues.push(s.string());
     }
     return childValues.join(", ");
