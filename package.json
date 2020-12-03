@@ -23,7 +23,8 @@
   },
   "keywords": [
     "selector",
-    "kubernetes"
+    "kubernetes",
+    "validation"
   ],
   "author": "Blend Labs, inc.",
   "license": "MIT",
