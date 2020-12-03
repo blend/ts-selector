@@ -3,6 +3,7 @@ import * as errors from "./errors";
 import { checkDNS } from "./check_dns";
 import { checkName } from "./check_name";
 
+// checkKey returns if the label key is valid.
 function checkKey(key: string): Error | null {
   const keyLen = key.length;
   if (keyLen === 0) {
@@ -18,10 +19,11 @@ function checkKey(key: string): Error | null {
   let err: Error | null = null;
   for (let pos = 0; pos < keyLen; pos++) {
     ch = key.charAt(pos);
-    if (state == 0) {
+
+    if (state === 0) {
       if (ch === constants.ForwardSlash) {
         err = checkDNS(working.join(""));
-        if (err !== null) {
+        if (err) {
           return err;
         }
         working = [];
@@ -29,8 +31,8 @@ function checkKey(key: string): Error | null {
         continue;
       }
     }
+
     working.push(ch);
-    continue;
   }
 
   if (working.length === 0) {

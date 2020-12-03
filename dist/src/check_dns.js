@@ -39,7 +39,7 @@ function checkDNS(value) {
                 }
                 continue;
             case 2: // we've hit a dot, dash, or underscore that can't repeat
-                if (!charUtil.isLowerAlpha(ch)) {
+                if (charUtil.isNameSymbol(ch)) {
                     return errors.ErrKeyInvalidCharacter;
                 }
                 if (pos == valueLen - 2) {

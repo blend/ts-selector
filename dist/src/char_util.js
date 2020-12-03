@@ -11,39 +11,30 @@ function isWhitespace(ch) {
 }
 exports.isWhitespace = isWhitespace;
 function isAlpha(ch) {
-    return (ch.length === 1 && ((ch >= "a" && ch <= "z") || (ch >= "A" && ch <= "Z")));
+    return (ch.length === 1 &&
+        ((ch >= "a" && ch <= "z") ||
+            (ch >= "A" && ch <= "Z") ||
+            (ch >= "0" && ch <= "9")));
 }
 exports.isAlpha = isAlpha;
 function isLowerAlpha(ch) {
-    return ch.length === 1 && ch >= "a" && ch <= "z";
+    return (ch.length === 1 && ((ch >= "a" && ch <= "z") || (ch >= "0" && ch <= "9")));
 }
 exports.isLowerAlpha = isLowerAlpha;
 function isNameSymbol(ch) {
-    if (ch.length !== 1) {
-        return false;
-    }
-    switch (ch) {
-        case (constants.Dot, constants.Dash, constants.Underscore):
-            return true;
-        default:
-            return false;
-    }
+    return (ch.length === 1 &&
+        (ch === constants.Dot ||
+            ch === constants.Dash ||
+            ch === constants.Underscore));
 }
 exports.isNameSymbol = isNameSymbol;
 function isSelectorSymbol(ch) {
-    if (ch.length !== 1) {
-        return false;
-    }
-    switch (ch) {
-        case (constants.Equal,
-            constants.Bang,
-            constants.OpenParens,
-            constants.CloseParens,
-            constants.Comma):
-            return true;
-        default:
-            return false;
-    }
+    return (ch.length === 1 &&
+        (ch === constants.Equal ||
+            ch === constants.Bang ||
+            ch === constants.OpenParens ||
+            ch === constants.CloseParens ||
+            ch === constants.Comma));
 }
 exports.isSelectorSymbol = isSelectorSymbol;
 function isSymbol(ch) {

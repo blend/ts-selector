@@ -11,6 +11,7 @@ function checkName(value: string): Error | null {
     switch (state) {
       case 0: //check prefix/suffix
         if (!charUtil.isAlpha(ch)) {
+          console.log(`check name fails prefix is alpha ${ch}`);
           return errors.ErrKeyInvalidCharacter;
         }
         state = 1;
@@ -23,6 +24,9 @@ function checkName(value: string): Error | null {
             charUtil.isAlpha(ch)
           )
         ) {
+          console.log(
+            `check name fails is nameSymbol, alpha or backslash ${ch}`
+          );
           return errors.ErrKeyInvalidCharacter;
         }
         if (pos === valueLen - 2) {

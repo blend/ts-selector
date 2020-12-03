@@ -18,7 +18,6 @@ Selectors must be in the form:
   <value-set>               ::= "(" <values> ")"
   <values>                  ::= VALUE | VALUE "," <values>
   <exact-match-restriction> ::= ["="|"=="|"!="] VALUE
-```
 
 `KEY` is a sequence of one or more characters following [ DNS_SUBDOMAIN "/" ] DNS*LABEL. Max length is 63 characters.
 `VALUE` is a sequence of zero or more characters "([A-Za-z0-9*-\.])". Max length is 63 characters.
@@ -28,7 +27,6 @@ Example of valid syntax:
 
 > "x in (foo,,baz),y,z notin ()"
 
-```
 Note:
   (1) Inclusion - " in " - denotes that the KEY exists and is equal to any of the
       VALUEs in its requirement

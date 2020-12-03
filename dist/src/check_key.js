@@ -5,6 +5,7 @@ const constants = require("./constants");
 const errors = require("./errors");
 const check_dns_1 = require("./check_dns");
 const check_name_1 = require("./check_name");
+// checkKey returns if the label key is valid.
 function checkKey(key) {
     const keyLen = key.length;
     if (keyLen === 0) {
@@ -19,10 +20,10 @@ function checkKey(key) {
     let err = null;
     for (let pos = 0; pos < keyLen; pos++) {
         ch = key.charAt(pos);
-        if (state == 0) {
+        if (state === 0) {
             if (ch === constants.ForwardSlash) {
                 err = check_dns_1.checkDNS(working.join(""));
-                if (err !== null) {
+                if (err) {
                     return err;
                 }
                 working = [];
@@ -31,7 +32,6 @@ function checkKey(key) {
             }
         }
         working.push(ch);
-        continue;
     }
     if (working.length === 0) {
         return errors.ErrKeyEmpty;

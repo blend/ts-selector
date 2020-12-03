@@ -12,40 +12,37 @@ function isWhitespace(ch: string): boolean {
 
 function isAlpha(ch: string): boolean {
   return (
-    ch.length === 1 && ((ch >= "a" && ch <= "z") || (ch >= "A" && ch <= "Z"))
+    ch.length === 1 &&
+    ((ch >= "a" && ch <= "z") ||
+      (ch >= "A" && ch <= "Z") ||
+      (ch >= "0" && ch <= "9"))
   );
 }
 
 function isLowerAlpha(ch: string): boolean {
-  return ch.length === 1 && ch >= "a" && ch <= "z";
+  return (
+    ch.length === 1 && ((ch >= "a" && ch <= "z") || (ch >= "0" && ch <= "9"))
+  );
 }
 
 function isNameSymbol(ch: string): boolean {
-  if (ch.length !== 1) {
-    return false;
-  }
-  switch (ch) {
-    case (constants.Dot, constants.Dash, constants.Underscore):
-      return true;
-    default:
-      return false;
-  }
+  return (
+    ch.length === 1 &&
+    (ch === constants.Dot ||
+      ch === constants.Dash ||
+      ch === constants.Underscore)
+  );
 }
 
 function isSelectorSymbol(ch: string): boolean {
-  if (ch.length !== 1) {
-    return false;
-  }
-  switch (ch) {
-    case (constants.Equal,
-    constants.Bang,
-    constants.OpenParens,
-    constants.CloseParens,
-    constants.Comma):
-      return true;
-    default:
-      return false;
-  }
+  return (
+    ch.length === 1 &&
+    (ch === constants.Equal ||
+      ch === constants.Bang ||
+      ch === constants.OpenParens ||
+      ch === constants.CloseParens ||
+      ch === constants.Comma)
+  );
 }
 
 function isSymbol(ch: string): boolean {
