@@ -1,0 +1,15 @@
+name: "NPM Publish"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: Ubuntu-20.04
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+
+    - run: npm i
+    - run: npm test
+    - run: echo "we would publish here"

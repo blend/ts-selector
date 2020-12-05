@@ -1,0 +1,28 @@
+name: "Post Merge"
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [closed]
+
+jobs:
+
+  push:
+    name: "Post Merge"
+    runs-on: Ubuntu-20.04
+    if: github.event.pull_request.merged == true
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+
+    - run: npm i
+    - run: make build-docs
+    - run: |
+        export VERSION=$(node scripts/current_version.js)
+        git add ./docs
+        git commit -m "Post-merge changes for PR (#${{github.event.number}})
+        git tag ${VERSION}
+        git push --force-with-lease origin ${VERSION}
+        git push --force-with-lease origin HEAD

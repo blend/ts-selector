@@ -1,0 +1,79 @@
+{
+  "name": "ts-selector",
+  "version": "1.0.0",
+  "description": "A typescript implementation of Kubernetes Selectors",
+  "homepage": "https://blend.github.io/ts-selector",
+  "main": "dist/src/index.js",
+  "scripts": {
+    "prepare": "tsc",
+    "prettier:base": "prettier '{src,test}/**/**/*.ts'",
+    "prettier": "npm run prettier:base -- --write",
+    "lintSrc": "eslint ./src --ext .ts",
+    "lintTest": "eslint ./test --ext .ts",
+    "lint": "npm run prettier:base -- --list-different && npm run lintSrc && npm run lintTest",
+    "lintFix": "npm run prettier && npm run lintSrc -- --fix && npm run lintTest -- --fix",
+    "testCode": "nyc ava",
+    "test": "tsc && npm run testCode && npm run lint",
+    "testFix": "tsc && npm run testCode && npm run lintFix",
+    "start": "grunt"
+  },
+  "ava": {
+    "files": [
+      "dist/test/**/*.test.js"
+    ],
+    "ignoredByWatcher": [
+      "src/*.ts",
+      "src/**/*.ts"
+    ],
+    "concurrency": 5,
+    "verbose": true,
+    "timeout": "10000",
+    "failFast": false,
+    "powerAssert": true
+  },
+  "nyc": {
+    "reporter": [
+      "html",
+      "json",
+      "lcov",
+      "text"
+    ],
+    "require": [
+      "source-map-support/register"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "skip-full": true,
+    "check-coverage": true,
+    "lines": 94,
+    "functions": 90,
+    "branches": 88,
+    "statements": 94,
+    "exclude": [
+      "dist/test/**/*.js"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/blend/ts-selector"
+  },
+  "keywords": [
+    "selector",
+    "kubernetes",
+    "validation"
+  ],
+  "author": "Blend Labs, inc.",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.9.0",
+    "@typescript-eslint/parser": "^4.9.0",
+    "ava": "^3.13.0",
+    "eslint": "^7.14.0",
+    "nyc": "^15.1.0",
+    "prettier": "^2.2.1",
+    "typedoc": "^0.19.2",
+    "typescript": "^4.1.2"
+  }
+}

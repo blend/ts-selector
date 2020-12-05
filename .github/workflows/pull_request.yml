@@ -1,0 +1,17 @@
+name: "Pull Request"
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: Ubuntu-20.04
+    steps:
+    - name: checkout
+      uses: actions/checkout@v2
+
+    - run: node scripts/must_increment.js
+    - run: npm i
+    - run: npm test
