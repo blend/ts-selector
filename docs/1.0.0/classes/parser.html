@@ -101,6 +101,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="parser.html#addand" class="tsd-kind-icon">add<wbr>And</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="parser.html#advance" class="tsd-kind-icon">advance</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="parser.html#checkselectororerror" class="tsd-kind-icon">check<wbr>Selector<wbr>OrError</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="parser.html#current" class="tsd-kind-icon">current</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="parser.html#done" class="tsd-kind-icon">done</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="parser.html#equals" class="tsd-kind-icon">equals</a></li>
@@ -122,7 +123,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="parser.html#readcsv" class="tsd-kind-icon">readCSV</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="parser.html#readop" class="tsd-kind-icon">read<wbr>Op</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="parser.html#readword" class="tsd-kind-icon">read<wbr>Word</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="parser.html#skiptocomma" class="tsd-kind-icon">skip<wbr>ToComma</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="parser.html#skiptononwhitespace" class="tsd-kind-icon">skip<wbr>ToNon<wbr>Whitespace</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="parser.html#skipwhitespace" class="tsd-kind-icon">skip<wbr>Whitespace</a></li>
 							</ul>
 						</section>
@@ -141,7 +142,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/2e20ddb/src/parser.ts#L23">parser.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L23">parser.ts:23</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -166,7 +167,7 @@
 					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">IParserOpts</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/blend/ts-selector/blob/2e20ddb/src/parser.ts#L20">parser.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L20">parser.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -177,13 +178,13 @@
 					<a name="addand" class="tsd-anchor"></a>
 					<h3>add<wbr>And</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>And<span class="tsd-signature-symbol">(</span>current<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ISelector</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, next<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ISelector</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ISelector</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>And<span class="tsd-signature-symbol">(</span>current<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ISelector</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, next<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ISelector</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ISelector</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/2e20ddb/src/parser.ts#L158">parser.ts:158</a></li>
+									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L201">parser.ts:201</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -195,7 +196,7 @@
 									<h5>next: <span class="tsd-signature-type">ISelector</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ISelector</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ISelector</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -209,10 +210,33 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/2e20ddb/src/parser.ts#L139">parser.ts:139</a></li>
+									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L172">parser.ts:172</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="checkselectororerror" class="tsd-anchor"></a>
+					<h3>check<wbr>Selector<wbr>OrError</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">check<wbr>Selector<wbr>OrError<span class="tsd-signature-symbol">(</span>sel<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ISelector</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L190">parser.ts:190</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>sel: <span class="tsd-signature-type">ISelector</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -226,7 +250,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/2e20ddb/src/parser.ts#L136">parser.ts:136</a></li>
+									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L169">parser.ts:169</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -243,7 +267,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/2e20ddb/src/parser.ts#L144">parser.ts:144</a></li>
+									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L177">parser.ts:177</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -254,13 +278,13 @@
 					<a name="equals" class="tsd-anchor"></a>
 					<h3>equals</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">equals<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ISelector</span></li>
+						<li class="tsd-signature tsd-kind-icon">equals<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ISelector</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/2e20ddb/src/parser.ts#L174">parser.ts:174</a></li>
+									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L217">parser.ts:217</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -269,7 +293,7 @@
 									<h5>key: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ISelector</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ISelector</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -277,13 +301,13 @@
 					<a name="haskey" class="tsd-anchor"></a>
 					<h3>has<wbr>Key</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">has<wbr>Key<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ISelector</span></li>
+						<li class="tsd-signature tsd-kind-icon">has<wbr>Key<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ISelector</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/2e20ddb/src/parser.ts#L168">parser.ts:168</a></li>
+									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L211">parser.ts:211</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -292,7 +316,7 @@
 									<h5>key: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ISelector</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ISelector</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -306,7 +330,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/2e20ddb/src/parser.ts#L182">parser.ts:182</a></li>
+									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L231">parser.ts:231</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -329,7 +353,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/2e20ddb/src/parser.ts#L497">parser.ts:497</a></li>
+									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L548">parser.ts:548</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -352,7 +376,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/2e20ddb/src/parser.ts#L503">parser.ts:503</a></li>
+									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L554">parser.ts:554</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -375,7 +399,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/2e20ddb/src/parser.ts#L485">parser.ts:485</a></li>
+									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L536">parser.ts:536</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -398,7 +422,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/2e20ddb/src/parser.ts#L494">parser.ts:494</a></li>
+									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L545">parser.ts:545</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -421,7 +445,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/2e20ddb/src/parser.ts#L500">parser.ts:500</a></li>
+									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L551">parser.ts:551</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -444,7 +468,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/2e20ddb/src/parser.ts#L482">parser.ts:482</a></li>
+									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L533">parser.ts:533</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -467,7 +491,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/2e20ddb/src/parser.ts#L147">parser.ts:147</a></li>
+									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L180">parser.ts:180</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -484,7 +508,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/2e20ddb/src/parser.ts#L33">parser.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L33">parser.ts:33</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ISelector</span></h4>
@@ -495,13 +519,13 @@
 					<a name="notequals" class="tsd-anchor"></a>
 					<h3>not<wbr>Equals</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">not<wbr>Equals<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ISelector</span></li>
+						<li class="tsd-signature tsd-kind-icon">not<wbr>Equals<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ISelector</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/2e20ddb/src/parser.ts#L178">parser.ts:178</a></li>
+									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L224">parser.ts:224</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -510,7 +534,7 @@
 									<h5>key: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ISelector</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ISelector</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -518,13 +542,13 @@
 					<a name="nothaskey" class="tsd-anchor"></a>
 					<h3>not<wbr>Has<wbr>Key</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">not<wbr>Has<wbr>Key<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ISelector</span></li>
+						<li class="tsd-signature tsd-kind-icon">not<wbr>Has<wbr>Key<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ISelector</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/2e20ddb/src/parser.ts#L171">parser.ts:171</a></li>
+									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L214">parser.ts:214</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -533,7 +557,7 @@
 									<h5>key: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ISelector</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ISelector</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -547,7 +571,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/2e20ddb/src/parser.ts#L189">parser.ts:189</a></li>
+									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L238">parser.ts:238</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -570,7 +594,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/2e20ddb/src/parser.ts#L42">parser.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L42">parser.ts:42</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ISelector</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span></h4>
@@ -587,7 +611,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/2e20ddb/src/parser.ts#L150">parser.ts:150</a></li>
+									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L183">parser.ts:183</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -604,7 +628,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/2e20ddb/src/parser.ts#L334">parser.ts:334</a></li>
+									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L385">parser.ts:385</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span></h4>
@@ -621,7 +645,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/2e20ddb/src/parser.ts#L201">parser.ts:201</a></li>
+									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L250">parser.ts:250</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span></h4>
@@ -632,30 +656,30 @@
 					<a name="readword" class="tsd-anchor"></a>
 					<h3>read<wbr>Word</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">read<wbr>Word<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">read<wbr>Word<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/2e20ddb/src/parser.ts#L310">parser.ts:310</a></li>
+									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L359">parser.ts:359</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="skiptocomma" class="tsd-anchor"></a>
-					<h3>skip<wbr>ToComma</h3>
+					<a name="skiptononwhitespace" class="tsd-anchor"></a>
+					<h3>skip<wbr>ToNon<wbr>Whitespace</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">skip<wbr>ToComma<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">skip<wbr>ToNon<wbr>Whitespace<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/2e20ddb/src/parser.ts#L462">parser.ts:462</a></li>
+									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L513">parser.ts:513</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -672,7 +696,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/2e20ddb/src/parser.ts#L444">parser.ts:444</a></li>
+									<li>Defined in <a href="https://github.com/blend/ts-selector/blob/54e389a/src/parser.ts#L495">parser.ts:495</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -707,6 +731,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="parser.html#advance" class="tsd-kind-icon">advance</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="parser.html#checkselectororerror" class="tsd-kind-icon">check<wbr>Selector<wbr>OrError</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="parser.html#current" class="tsd-kind-icon">current</a>
@@ -772,7 +799,7 @@
 								<a href="parser.html#readword" class="tsd-kind-icon">read<wbr>Word</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="parser.html#skiptocomma" class="tsd-kind-icon">skip<wbr>ToComma</a>
+								<a href="parser.html#skiptononwhitespace" class="tsd-kind-icon">skip<wbr>ToNon<wbr>Whitespace</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="parser.html#skipwhitespace" class="tsd-kind-icon">skip<wbr>Whitespace</a>
