@@ -147,3 +147,12 @@ test("parser handles empty operator value", async (t) => {
     new selector.Parser(badExpression).mustParse();
   }, undefined);
 });
+
+test("parser handles positive fuzzing regressions", async (t) => {
+  const inputs = ["0,!0", "0, !0"];
+
+  for (const input of inputs) {
+    const sel = selector.parse(input);
+    t.false(sel instanceof Error);
+  }
+});
