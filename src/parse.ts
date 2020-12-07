@@ -1,4 +1,5 @@
 import Parser from "./parser";
+import { ISelector } from "./interfaces";
 
 /**
  * mustParse parses a selector into a predicate tree and throws errors as exceptions.

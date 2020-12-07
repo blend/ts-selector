@@ -1,4 +1,5 @@
 import { checkKey } from "./check_key";
+import { ISelector } from "./interfaces";
 
 /**
  * Represents an `NotHasKey` predicate tree node.

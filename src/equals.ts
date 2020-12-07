@@ -1,5 +1,6 @@
 import { checkKey } from "./check_key";
 import { checkValue } from "./check_value";
+import { ISelector } from "./interfaces";
 
 // Equals returns if a key strictly equals a value.
 export default class Equals implements ISelector {

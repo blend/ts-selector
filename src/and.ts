@@ -1,4 +1,4 @@
-import { ISelector } from './interfaces';
+import { ISelector } from "./interfaces";
 
 /**
  * Represents an `And` predicate tree node.
