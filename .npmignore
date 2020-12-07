@@ -20,3 +20,4 @@ tscommand-*
 .tscache/
 docs/
 .git
+.github
