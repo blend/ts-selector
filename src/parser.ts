@@ -130,6 +130,8 @@ export default class Parser {
         if (this.done()) {
           break;
         }
+
+        this.skipToNonWhitespace();
         continue;
       }
 

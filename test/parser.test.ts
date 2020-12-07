@@ -149,7 +149,7 @@ test("parser handles empty operator value", async (t) => {
 });
 
 test("parser handles positive fuzzing regressions", async (t) => {
-  const inputs = ["0,!0", "0, !0"];
+  const inputs = ["0,!0", "0, !0", "0 in (0), !0"];
 
   for (const input of inputs) {
     const sel = selector.parse(input);
