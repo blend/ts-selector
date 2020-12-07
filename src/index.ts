@@ -35,4 +35,4 @@ export { default as Parser } from "./parser";
 export { mustParse, parse } from "./parse";
 
 // export interfaces
-export { IParserOpts, ISelector } from "./interfaces";
+export * from "./interfaces";
