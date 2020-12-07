@@ -23,3 +23,19 @@ test("assert mustParse handles README.md example", async (t) => {
   t.false(sel.matches({ x: "who", y: "something", z: "loo" }));
   t.false(sel.matches({ x: "baz", z: "loo" }));
 });
+
+test("assert mustParse handles domain example", async (t) => {
+  const sel = selector.mustParse("example.com/failure-domain == primary");
+  t.deepEqual("example.com/failure-domain == primary", sel.string());
+
+  t.true(
+    sel.matches({
+      bar: "foo",
+      "example.com/failure-domain": "primary",
+      foo: "bar",
+    })
+  );
+  t.false(sel.matches({ x: "baz", y: "something", z: "loo" }));
+  t.false(sel.matches({ x: "who", y: "something", z: "loo" }));
+  t.false(sel.matches({ x: "baz", z: "loo" }));
+});
