@@ -63,19 +63,13 @@ export default class Parser {
           return word as Error;
         }
 
-        selectorOrError = this.notHasKey(word as string);
-        if (this.checkSelectorOrError(selectorOrError)) {
-          return this.checkSelectorOrError(selectorOrError) as Error;
-        }
-
-        selectorOrError = this.addAnd(selector, selectorOrError as ISelector);
-        if (this.checkSelectorOrError(selectorOrError)) {
-          return this.checkSelectorOrError(selectorOrError) as Error;
-        }
-        selector = selectorOrError as ISelector;
-
+        selector = this.addAnd(selector, this.notHasKey(word as string));
         if (this.done()) {
           break;
+        }
+        this.skipToNonWhitespace();
+        if (this.current() !== constants.Comma) {
+          return errors.ErrInvalidSelector;
         }
         continue;
       }
@@ -85,26 +79,18 @@ export default class Parser {
         return word as Error;
       }
 
-      this.mark();
+      this.mark(); // mark to revert if the sniff fails
+
+      // sniff if the next character after the word is a comma
+      // this indicates it's a "key" form, or existence check on a key
       b = this.skipToNonWhitespace();
-
       if (b === constants.Comma || this.isTerminator(b) || this.done()) {
-        selectorOrError = this.hasKey(word as string);
-        if (this.checkSelectorOrError(selectorOrError)) {
-          return this.checkSelectorOrError(selectorOrError) as Error;
-        }
-
-        selectorOrError = this.addAnd(selector, selectorOrError as ISelector);
-        if (this.checkSelectorOrError(selectorOrError)) {
-          return this.checkSelectorOrError(selectorOrError) as Error;
-        }
-        selector = selectorOrError as ISelector;
+        selector = this.addAnd(selector, this.hasKey(word as string));
 
         this.advance();
         if (this.done()) {
           break;
         }
-
         continue;
       } else {
         this.popMark();
@@ -135,12 +121,7 @@ export default class Parser {
       if (this.checkSelectorOrError(selectorOrError)) {
         return this.checkSelectorOrError(selectorOrError) as Error;
       }
-
-      selectorOrError = this.addAnd(selector, selectorOrError as ISelector);
-      if (this.checkSelectorOrError(selectorOrError)) {
-        return this.checkSelectorOrError(selectorOrError) as Error;
-      }
-      selector = selectorOrError as ISelector;
+      selector = this.addAnd(selector, selectorOrError as ISelector);
 
       b = this.skipToNonWhitespace();
       if (b === constants.Comma) {
@@ -198,7 +179,7 @@ export default class Parser {
   }
 
   // addAnd starts grouping selectors into a high level `and`, returning the aggregate selector.
-  addAnd(current: ISelector | null, next: ISelector): ISelector | Error {
+  addAnd(current: ISelector | null, next: ISelector): ISelector {
     if (current === null) {
       return next;
     }
@@ -208,10 +189,10 @@ export default class Parser {
     }
     return new And([current, next]);
   }
-  hasKey(key: string): ISelector | Error {
+  hasKey(key: string): ISelector {
     return new HasKey(key);
   }
-  notHasKey(key: string): ISelector | Error {
+  notHasKey(key: string): ISelector {
     return new NotHasKey(key);
   }
   equals(key: string): ISelector | Error {
@@ -251,35 +232,48 @@ export default class Parser {
     // skip preceding whitespace
     this.skipWhitespace();
 
-    let state = 0;
+    const stateFirstOpChar = 0;
+    const stateEqual = 1;
+    const stateBang = 2;
+    const stateInI = 3;
+    const stateNotInN = 4;
+    const stateNotInO = 5;
+    const stateNotInT = 6;
+    const stateNotInI = 7;
+
+    let state = stateFirstOpChar;
     let ch = "";
     const op: string[] = [];
 
     for (;;) {
+      if (this.done()) {
+        return op.join("");
+      }
+
       ch = this.current();
 
       switch (state) {
-        case 0: // initial state, determine what op we're reading for
+        case stateFirstOpChar: // initial state, determine what op we're reading for
           if (ch === constants.Equal) {
-            state = 1;
+            state = stateEqual;
             break;
           }
           if (ch === constants.Bang) {
-            state = 2;
+            state = stateBang;
             break;
           }
           if (ch === "i") {
-            state = 6;
+            state = stateInI;
             break;
           }
           if (ch === "n") {
-            state = 7;
+            state = stateNotInN;
             break;
           }
 
           return errors.ErrInvalidOperator;
 
-        case 1: // =
+        case stateEqual: // =
           if (
             this.isWhitespace(ch) ||
             this.isAlpha(ch) ||
@@ -296,7 +290,7 @@ export default class Parser {
 
           return errors.ErrInvalidOperator;
 
-        case 2: // !
+        case stateBang: // !
           if (ch === constants.Equal) {
             op.push(ch);
             this.advance();
@@ -305,9 +299,8 @@ export default class Parser {
 
           return errors.ErrInvalidOperator;
 
-        case 6: // look for "in" based on "i"
+        case stateInI:
           if (ch === "n") {
-            // finishes "in"
             op.push(ch);
             this.advance();
             return op.join("");
@@ -315,49 +308,48 @@ export default class Parser {
 
           return errors.ErrInvalidOperator;
 
-        case 7: // o
+        case stateNotInN:
           if (ch === "o") {
-            state = 8;
+            state = stateNotInO;
             break;
           }
+
           return errors.ErrInvalidOperator;
 
-        case 8: // t
+        case stateNotInO: // t
           if (ch === "t") {
-            state = 9;
+            state = stateNotInT;
             break;
           }
+
           return errors.ErrInvalidOperator;
 
-        case 9: // i
+        case stateNotInT:
           if (ch === "i") {
-            state = 10;
+            state = stateNotInI;
             break;
           }
+
           return errors.ErrInvalidOperator;
 
-        case 10: // n
+        case stateNotInI:
           if (ch === "n") {
             op.push(ch);
             this.advance();
             return op.join("");
           }
+
           return errors.ErrInvalidOperator;
       }
 
       op.push(ch);
       this.advance();
-
-      if (this.done()) {
-        return op.join("");
-      }
     }
   }
 
   // readWord skips whitespace, then reads a word until whitespace or a token.
   // it will leave the cursor on the next char after the word, i.e. the space or token.
   readWord(): string | Error {
-    // skip any preceding whitespace
     this.skipWhitespace();
 
     const word: string[] = [];
@@ -366,13 +358,17 @@ export default class Parser {
       if (this.done()) {
         break;
       }
+
       ch = this.current();
-      if (this.isWhitespace(ch)) {
+
+      if (
+        this.isWhitespace(ch) ||
+        ch == constants.Comma ||
+        this.isOperatorSymbol(ch)
+      ) {
         break;
       }
-      if (this.isSpecialSymbol(ch)) {
-        break;
-      }
+
       word.push(ch);
       this.advance();
     }
@@ -388,33 +384,41 @@ export default class Parser {
     // skip preceding whitespace
     this.skipWhitespace();
 
+    const stateBeforeParens = 0;
+    const stateWord = 1;
+    const stateWhitespaceAfterSymbol = 2;
+    const stateWhitespaceAfterWord = 3;
+
     let word: string[] = [];
     let ch = "";
     let state = 0;
 
     for (;;) {
-      ch = this.current();
-
       if (this.done()) {
         return errors.ErrInvalidSelector;
       }
 
+      ch = this.current();
+
       switch (state) {
-        case 0: // leading paren
+        case stateBeforeParens: // leading paren
           if (ch === constants.OpenParens) {
-            state = 2; // spaces or alphas
+            state = stateWhitespaceAfterSymbol; // spaces or alphas
             this.advance();
             continue;
           }
+
           // not open parens, bail
           return errors.ErrInvalidSelector;
-        case 1: // alphas (in word)
+        case stateWord: // alphas (in word)
           if (ch === constants.Comma) {
             if (word.length > 0) {
               results.push(word.join(""));
               word = [];
             }
-            state = 2; // from comma
+
+            // the symbol is the comma
+            state = stateWhitespaceAfterSymbol;
             this.advance();
             continue;
           }
@@ -428,7 +432,11 @@ export default class Parser {
           }
 
           if (this.isWhitespace(ch)) {
-            state = 3;
+            if (word.length > 0) {
+              results.push(word.join(""));
+            }
+
+            state = stateWhitespaceAfterWord;
             this.advance();
             continue;
           }
@@ -441,12 +449,7 @@ export default class Parser {
           this.advance();
           continue;
 
-        case 2: //whitespace after symbol
-          if (ch === constants.CloseParens) {
-            this.advance();
-            return results;
-          }
-
+        case stateWhitespaceAfterSymbol:
           if (this.isWhitespace(ch)) {
             this.advance();
             continue;
@@ -458,13 +461,18 @@ export default class Parser {
           }
 
           if (this.isAlpha(ch)) {
-            state = 1;
+            state = stateWord;
             continue;
+          }
+
+          if (ch === constants.CloseParens) {
+            this.advance();
+            return results;
           }
 
           return errors.ErrInvalidSelector;
 
-        case 3: //whitespace after alpha
+        case stateWhitespaceAfterWord:
           if (ch === constants.CloseParens) {
             if (word.length > 0) {
               results.push(word.join(""));
@@ -479,12 +487,8 @@ export default class Parser {
           }
 
           if (ch === constants.Comma) {
-            if (word.length > 0) {
-              results.push(word.join(""));
-              word = [];
-            }
+            state = stateWhitespaceAfterSymbol;
             this.advance();
-            state = 2;
             continue;
           }
           return errors.ErrInvalidSelector;
@@ -493,29 +497,25 @@ export default class Parser {
   }
 
   skipWhitespace(): void {
-    if (this.done()) {
-      return;
-    }
-
     let ch = "";
     for (;;) {
+      if (this.done()) {
+        return;
+      }
       ch = this.current();
       if (!this.isWhitespace(ch)) {
         return;
       }
       this.advance();
-      if (this.done()) {
-        return;
-      }
     }
   }
 
   skipToNonWhitespace(): string {
     let ch = "";
-    if (this.done()) {
-      return ch;
-    }
     for (;;) {
+      if (this.done()) {
+        return ch;
+      }
       ch = this.current();
       if (ch == constants.Comma) {
         return ch;
@@ -524,14 +524,14 @@ export default class Parser {
         return ch;
       }
       this.advance();
-      if (this.done()) {
-        return ch;
-      }
     }
   }
 
   isWhitespace(ch: string): boolean {
     return charUtil.isWhitespace(ch);
+  }
+  isOperatorSymbol(ch: string): boolean {
+    return (ch.length === 1 && ch === constants.Bang) || ch === constants.Equal;
   }
   isSpecialSymbol(ch: string): boolean {
     return (

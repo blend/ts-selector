@@ -104,6 +104,7 @@ test("assert parser handles README.md example", async (t) => {
 test("assert parser handles other specific failure modes", async (t) => {
   const failureModes = [
     "!",
+    "!0!0", // identified by fuzzing go-sdk/selector
     "f!",
     "f,!",
     "foo in ((",

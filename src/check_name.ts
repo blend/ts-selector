@@ -1,4 +1,3 @@
-import * as constants from "./constants";
 import * as errors from "./errors";
 import * as charUtil from "./char_util";
 
@@ -16,13 +15,7 @@ function checkName(value: string): Error | null {
         state = 1;
         continue;
       case 1:
-        if (
-          !(
-            charUtil.isNameSymbol(ch) ||
-            ch === constants.BackSlash ||
-            charUtil.isAlpha(ch)
-          )
-        ) {
+        if (!(charUtil.isNameSymbol(ch) || charUtil.isAlpha(ch))) {
           return errors.ErrKeyInvalidCharacter;
         }
         if (pos === valueLen - 2) {

@@ -54,13 +54,15 @@ Selectors must be in the form:
   <values>                  ::= VALUE | VALUE "," <values>
   <exact-match-restriction> ::= ["="|"=="|"!="] VALUE
 
-`KEY` is a sequence of one or more characters following [ DNS_SUBDOMAIN "/" ] DNS*LABEL. Max length is 63 characters.
-`VALUE` is a sequence of zero or more characters "([A-Za-z0-9*-\.])". Max length is 63 characters.
+KEY is a sequence of one or more characters following: [ DNS_SUBDOMAIN "/" ] DNS_LABEL.
+  - DNS_SUBDOMAIN is a sequence of one or more characters ([a-z0-9-.]), and must start and end with an alphanumeric ([a-z0-9]).
+  Symbol characters ('.', '-') cannot repeat. Max length is 253 characters.
+  - DNS_LABEL is a sequence of one or more characters ([A-Za-z0-9_-.]). Max length is 63 characters.
+VALUE is a sequence of zero or more characters ([A-Za-z0-9_-.]). Values must start and end with an alphanumeric ([a-z0-9A-Z]). Max length is 63 characters.
 Delimiter is white space: (' ', '\t')
 
 Example of valid syntax:
-
-> "x in (foo,,baz),y,z notin ()"
+"x in (foo,,baz),y,z notin ()"
 
 Note:
   (1) Inclusion - " in " - denotes that the KEY exists and is equal to any of the
@@ -71,6 +73,7 @@ Note:
   (4) A requirement with just a KEY - as in "y" above - denotes that
       the KEY exists and can be any VALUE.
   (5) A requirement with just !KEY requires that the KEY not exist.
+
 ```
 
 # Contributions

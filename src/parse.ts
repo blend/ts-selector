@@ -1,7 +1,7 @@
 import Parser from "./parser";
 
 /**
- * Parses a selector into a predicate tree and throws errors returned as exceptions.
+ * mustParse parses a selector into a predicate tree and throws errors as exceptions.
  * @public
  */
 function mustParse(sel: string): ISelector {
