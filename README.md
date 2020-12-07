@@ -84,4 +84,4 @@ We welcome contributions but might be slow to respond to PRs. Please allow a wee
 
 # License
 
-`ts-events` is licensed under the MIT license.
+`ts-selector` is licensed under the MIT license.
