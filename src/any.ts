@@ -1,3 +1,5 @@
+import { ISelector } from "./interfaces";
+
 /**
  * Represents an `Any` predicate tree node.
  *

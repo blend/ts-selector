@@ -5,7 +5,7 @@ test("assert parse handles README.md example", async (t) => {
   const sel = selector.parse("x in (foo,,baz),y,z notin ()");
   t.false(sel instanceof Error);
 
-  const typedSel: ISelector = sel as ISelector;
+  const typedSel: selector.ISelector = sel as selector.ISelector;
   t.deepEqual("x in (foo, baz), y, z notin ()", typedSel.string());
 
   t.true(typedSel.matches({ x: "foo", y: "something", z: "loo" }));

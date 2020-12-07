@@ -1,5 +1,6 @@
 import { checkKey } from "./check_key";
 import { checkValue } from "./check_value";
+import { ISelector } from "./interfaces";
 
 /**
  * Represents an `In` predicate tree node.

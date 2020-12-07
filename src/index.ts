@@ -33,3 +33,6 @@ export { default as Parser } from "./parser";
 
 // export parse functions
 export { mustParse, parse } from "./parse";
+
+// export interfaces
+export * from "./interfaces";
