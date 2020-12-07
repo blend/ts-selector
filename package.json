@@ -1,6 +1,6 @@
 {
   "name": "ts-selector",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A typescript implementation of Kubernetes Selectors",
   "homepage": "https://blend.github.io/ts-selector",
   "main": "dist/src/index.js",
