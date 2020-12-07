@@ -4,6 +4,7 @@
   "description": "A typescript implementation of Kubernetes Selectors",
   "homepage": "https://blend.github.io/ts-selector",
   "main": "dist/src/index.js",
+  "types": "src/interfaces.d.ts",
   "scripts": {
     "prepare": "tsc",
     "prettier:base": "prettier '{src,test}/**/**/*.ts'",

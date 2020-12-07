@@ -9,6 +9,7 @@ import NotIn from "./not_in";
 import * as constants from "./constants";
 import * as errors from "./errors";
 import * as charUtil from "./char_util";
+import { IParserOpts, ISelector } from './interfaces';
 
 /**
  * Parser implements the state machine that parses selectors into predicate trees.
