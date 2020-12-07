@@ -20,7 +20,7 @@ test("assert check dns works as intended", async (t) => {
     "dots-.-dots",
     "dots-.-dots",
   ];
-  for (let input of invalidInputs) {
+  for (const input of invalidInputs) {
     t.truthy(checkDNS(input), `input: ${input}`);
   }
 
@@ -32,7 +32,7 @@ test("assert check dns works as intended", async (t) => {
     "foo-bar.moo-bar",
   ];
 
-  for (let input of validInputs) {
+  for (const input of validInputs) {
     t.falsy(checkDNS(input), `input: ${input}`);
   }
 });

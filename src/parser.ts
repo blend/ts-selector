@@ -531,16 +531,7 @@ export default class Parser {
     return charUtil.isWhitespace(ch);
   }
   isOperatorSymbol(ch: string): boolean {
-    return (ch.length === 1 && ch === constants.Bang) || ch === constants.Equal;
-  }
-  isSpecialSymbol(ch: string): boolean {
-    return (
-      ch.length === 1 &&
-      (ch === constants.Equal ||
-        ch === constants.Bang ||
-        ch === constants.CloseParens ||
-        ch === constants.Comma)
-    );
+    return ch.length === 1 && (ch === constants.Bang || ch === constants.Equal);
   }
   isTerminator(ch: string): boolean {
     return ch.length === 1 && ch === "\0";

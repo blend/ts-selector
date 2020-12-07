@@ -47,7 +47,7 @@ function checkDNS(value: string): Error | null {
 
         state = stateAlpha;
         continue;
-        0;
+
       case stateAlpha:
         if (ch == constants.Dot || ch == constants.Dash) {
           state = stateDotDash;
